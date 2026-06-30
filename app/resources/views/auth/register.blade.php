@@ -141,7 +141,7 @@
 		position: relative;
 	}
 
-	.input-icon-wrap .bi {
+	.input-icon-wrap>.bi {
 		position: absolute;
 		left: 12px;
 		top: 50%;
@@ -155,6 +155,10 @@
 		padding-left: 2.4rem;
 	}
 
+	.input-icon-wrap.has-toggle .form-control {
+		padding-right: 2.75rem;
+	}
+
 	.password-toggle {
 		position: absolute;
 		right: 12px;
@@ -165,6 +169,10 @@
 		color: var(--slate-400);
 		cursor: pointer;
 		font-size: 1rem;
+	}
+
+	.password-toggle i {
+		pointer-events: none;
 	}
 
 	.form-row {
@@ -368,10 +376,10 @@
 					<i class="bi bi-person"></i>
 					<input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
 						value="{{ old('name') }}" placeholder="Jane Smith" required autocomplete="name" />
-					@error('name')
-					<div class="invalid-feedback d-block">{{ $message }}</div>
-					@enderror
 				</div>
+				@error('name')
+				<div class="invalid-feedback d-block">{{ $message }}</div>
+				@enderror
 			</div>
 
 			<div class="mb-3">
@@ -380,24 +388,24 @@
 					<i class="bi bi-envelope"></i>
 					<input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
 						placeholder="you@example.com" required autocomplete="email" />
-					@error('email')
-					<div class="invalid-feedback d-block">{{ $message }}</div>
-					@enderror
 				</div>
+				@error('email')
+				<div class="invalid-feedback d-block">{{ $message }}</div>
+				@enderror
 			</div>
 
 			<div class="mb-3">
 				<label class="form-label" for="password">Password</label>
-				<div class="input-icon-wrap">
+				<div class="input-icon-wrap has-toggle">
 					<i class="bi bi-lock"></i>
 					<input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
 						name="password" placeholder="Min. 8 characters" required oninput="checkStrength(this.value)" />
-					@error('password')
-					<div class="invalid-feedback d-block">{{ $message }}</div>
-					@enderror
 					<button type="button" class="password-toggle" onclick="togglePwd('password','eye1')"><i class="bi bi-eye"
 							id="eye1"></i></button>
 				</div>
+				@error('password')
+				<div class="invalid-feedback d-block">{{ $message }}</div>
+				@enderror
 				<div class="strength-bar">
 					<div class="strength-fill" id="strength-fill"></div>
 				</div>
@@ -406,7 +414,7 @@
 
 			<div class="mb-3">
 				<label class="form-label" for="password_confirmation">Confirm password</label>
-				<div class="input-icon-wrap">
+				<div class="input-icon-wrap has-toggle">
 					<i class="bi bi-lock-fill"></i>
 					<input type="password" class="form-control" id="password_confirmation" name="password_confirmation"
 						placeholder="Repeat password" required />

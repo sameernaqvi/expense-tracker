@@ -131,7 +131,7 @@
 		position: relative;
 	}
 
-	.input-icon-wrap .bi {
+	.input-icon-wrap>.bi {
 		position: absolute;
 		left: 12px;
 		top: 50%;
@@ -145,6 +145,10 @@
 		padding-left: 2.4rem;
 	}
 
+	.input-icon-wrap.has-toggle .form-control {
+		padding-right: 2.75rem;
+	}
+
 	.password-toggle {
 		position: absolute;
 		right: 12px;
@@ -155,6 +159,10 @@
 		color: var(--slate-400);
 		cursor: pointer;
 		font-size: 1rem;
+	}
+
+	.password-toggle i {
+		pointer-events: none;
 	}
 
 	.btn-primary-auth {
@@ -404,25 +412,25 @@
 					<i class="bi bi-envelope"></i>
 					<input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
 						value="{{ old('email') }}" placeholder="you@example.com" required autofocus autocomplete="email" />
-					@error('email')
-					<div class="invalid-feedback d-block">{{ $message }}</div>
-					@enderror
 				</div>
+				@error('email')
+				<div class="invalid-feedback d-block">{{ $message }}</div>
+				@enderror
 			</div>
 
 			<div class="mb-3">
 				<label class="form-label" for="password">Password</label>
-				<div class="input-icon-wrap">
+				<div class="input-icon-wrap has-toggle">
 					<i class="bi bi-lock"></i>
 					<input type="password" class="form-control" id="password" name="password" placeholder="••••••••" required
 						autocomplete="current-password" />
-					@error('password')
-					<div class="invalid-feedback d-block">{{ $message }}</div>
-					@enderror
 					<button type="button" class="password-toggle" onclick="togglePassword()">
 						<i class="bi bi-eye" id="eye-icon"></i>
 					</button>
 				</div>
+				@error('password')
+				<div class="invalid-feedback d-block">{{ $message }}</div>
+				@enderror
 			</div>
 
 			<div class="remember-row">
